@@ -1,0 +1,24 @@
+class Solution{
+    void functions(int index,int sum,List<Integer> arr,List<Integer>ans){
+        if(index==arr.size()){
+            ans.add(sum);
+            return ;
+        }
+        //if index is taken 
+        functions(index+1,sum+arr.get(index),arr,ans);
+        
+        //if index is not taken
+        functions(index+1,sum,arr,ans);
+        
+    }
+    ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int N){
+        // code here
+        
+        ArrayList<Integer> ans=new ArrayList<>();
+        
+        
+        functions(0,0,arr,ans);
+        Collections.sort(ans);
+        return ans;
+    }
+}

@@ -1,0 +1,24 @@
+class Solution {
+    private int fn(int[] nums,int target,int low,int high){
+        if(low>high)
+            return -1;
+        int mid=(low+high)/2;
+        if(nums[mid]==target)
+            return mid;
+        if(nums[low]<=nums[mid]){
+            if(target>=nums[low] && target<=nums[mid])
+                return fn(nums,target,low,mid-1);
+            return fn(nums,target,mid+1,high);            
+        }
+
+        
+        if(target>=nums[mid] && target<= nums[high])
+            return fn(nums,target,mid+1,high);
+        return fn(nums,target,low,mid-1);
+        
+    }
+    public int search(int[] nums, int target) {
+        int n=nums.length;
+        return fn(nums,target,0,n-1);
+    }
+}
